@@ -1,14 +1,11 @@
 import { Router } from "express";
-import {
-  getAllUsersController,
-  createUserController,
-  slowController,
-} from "./users.controller";
+import { getAllUsersController, slowController } from "./users.controller";
+import { authMiddleware } from "../../shared/middleware/auth";
+import { requireRole } from "../../shared/middleware/role";
 
 const router = Router();
 
-router.get("/", getAllUsersController);
-router.post("/", createUserController);
+router.get("/", authMiddleware, requireRole("admin"), getAllUsersController);
 router.get("/slow", slowController);
 
 export default router;

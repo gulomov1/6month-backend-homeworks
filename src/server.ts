@@ -1,12 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import dotenv from "dotenv";
 import productRouter from "./modules/products/products.routes";
 import userRouter from "./modules/users/users.routes";
+import authRouter from "./modules/auth/auth.routes";
 import { errorHandler } from "./shared/errors";
-
-dotenv.config();
 
 const app = express();
 const PORT = 3000;
@@ -23,6 +24,7 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
+app.use("/auth", authRouter);
 app.use("/product", productRouter);
 app.use("/users", userRouter);
 
