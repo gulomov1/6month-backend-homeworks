@@ -13,11 +13,16 @@ export type LoginInput = {
 
 export type AuthResponse = {
   user: PublicUser;
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 };
 
 export type JwtPayload = {
   sub: number;
   email: string;
   role: Role;
+};
+
+export type RefreshTokenPayload = {
+  sub: number;
 };

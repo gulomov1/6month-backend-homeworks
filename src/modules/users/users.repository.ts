@@ -19,6 +19,15 @@ export function findUserById(id: number): User | undefined {
   return users.find((u) => u.id === id);
 }
 
+export function deleteUser(id: number): boolean {
+  const index = users.findIndex((u) => u.id === id);
+  if (index === -1) {
+    return false;
+  }
+  users.splice(index, 1);
+  return true;
+}
+
 export function createUser(data: CreateUserInput): PublicUser {
   const newUser: User = {
     id: users.length + 1,

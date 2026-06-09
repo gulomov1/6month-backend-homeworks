@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { HttpError } from "../errors";
 import { JwtPayload } from "../../modules/auth/auth.types";
 
-const JWT_SECRET = process.env.JWT_SECRET || "dev_secret_change_me";
+const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET || "dev_access_secret";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -21,7 +21,7 @@ export function authMiddleware(req: Request, _res: Response, next: NextFunction)
   const token = authHeader.slice("Bearer ".length);
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
+    const decoded = jwt.verify(token, JWT_ACCESS_SECRET) as unknown as JwtPayload;
     req.user = decoded;
     next();
   } catch {

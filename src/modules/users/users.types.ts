@@ -1,5 +1,12 @@
 export type Role = "admin" | "user";
 
+// Aniq harakatlar. "resurs:harakat" ko'rinishida nomlanadi.
+export type Permission =
+  | "user:create"
+  | "user:read"
+  | "user:update"
+  | "user:delete";
+
 export type User = {
   id: number;
   name: string;

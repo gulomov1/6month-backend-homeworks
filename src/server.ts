@@ -7,6 +7,7 @@ import morgan from "morgan";
 import productRouter from "./modules/products/products.routes";
 import userRouter from "./modules/users/users.routes";
 import authRouter from "./modules/auth/auth.routes";
+import { seedAdminService } from "./modules/auth/auth.service";
 import { errorHandler } from "./shared/errors";
 
 const app = express();
@@ -30,6 +31,7 @@ app.use("/users", userRouter);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  await seedAdminService();
   console.log(`Server ${PORT}-portda ishlamoqda`);
 });
