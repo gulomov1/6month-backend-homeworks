@@ -166,22 +166,3 @@ db.likes.createIndex({ postId: 1, userId: 1 }, { unique: true })
 **Referenced:** Hamma narsa referenced
 
 ![Likes](assets/likes.png)
-
----
-
-## 10-savol Javobi
-
-**Savol:** Comments ni post ichiga embed qilish kerakmi yoki alohida collection?
-
-**Javob:**
-
-Kichik bloglar uchun embed qilish mumkin.
-
-Lekin haqiqiy platformalar uchun **alohida `comments` collection** to'g'ri tanlov, chunki:
-
-1. Bir post da minglab comment bo'lishi mumkin
-2. Hamma commentlarni har safar post bilan birga yuklab olish keraksiz
-3. MongoDB document ning maksimal o'lchami 16MB — embed qilsak chegaraga yetib qolishi mumkin
-4. Commentni alohida o'chirish, tahrirlash — Referenced da oson
-
-**Xulosa:** Ko'p va mustaqil o'zgarishi mumkin bo'lgan ma'lumot → **Referenced (alohida collection)**.
